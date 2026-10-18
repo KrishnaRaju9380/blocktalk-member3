@@ -1,0 +1,34 @@
+
+{
+  "name": "blocktalk",
+  "version": "1.0.0",
+  "description": "BlockTalk - Blockchain-Enabled Secure Communication Platform with real-time messaging and AES-GCM encryption",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "test:validation": "node --test tests/validation.test.js",
+    "test:messaging": "node --test tests/messaging.test.js"
+  },
+  "keywords": [
+    "blocktalk",
+    "real-time-messaging",
+    "socket.io",
+    "aes-gcm",
+    "web-crypto",
+    "secure-communication"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.1"
+  }
+}

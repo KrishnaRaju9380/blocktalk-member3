@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="BlockTalk real-time encrypted messaging demonstration"
+  />
+  <title>BlockTalk | Secure Messaging</title>
+
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/client.js" defer></script>
+</head>
+
+<body>
+  <main class="app">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">B</div>
+        <div>
+          <h1>BlockTalk</h1>
+          <p>Real-Time Secure Communication</p>
+        </div>
+      </div>
+
+      <div class="connection-indicator">
+        <span id="connectionDot" class="status-dot offline"></span>
+        <span id="connectionStatus" role="status">Connecting...</span>
+      </div>
+    </header>
+
+    <section id="joinPanel" class="join-panel">
+      <div class="welcome">
+        <h2>Welcome to BlockTalk</h2>
+        <p>Join the chat to exchange encrypted messages in real time.</p>
+      </div>
+
+      <form id="joinForm">
+        <label for="username">Your display name</label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Enter Alice or Bob"
+          minlength="1"
+          maxlength="30"
+          pattern="[A-Za-z0-9_-]+"
+          autocomplete="nickname"
+          required
+        />
+
+        <button id="joinButton" type="submit">Join Chat</button>
+      </form>
+
+      <p class="security-note">
+        Demo only: use a shared test encryption key. Do not use real
+        personal or confidential information.
+      </p>
+    </section>
+
+    <section id="chatPanel" class="chat-layout hidden">
+      <aside class="sidebar">
+        <h2>Chat members</h2>
+
+        <p class="sidebar-description">
+          Users currently connected
+        </p>
+
+        <ul id="onlineUsers" class="online-users" aria-live="polite">
+          <li class="empty-users">No users online</li>
+        </ul>
+
+        <div class="encryption-card">
+          <span class="encryption-icon" aria-hidden="true">🔒</span>
+          <h3>AES-GCM Encryption</h3>
+          <p>
+            Messages are encrypted in your browser before being sent
+            to the server.
+          </p>
+        </div>
+
+        <button id="leaveButton" class="leave-button" type="button">
+          Leave Chat
+        </button>
+      </aside>
+
+      <section class="chat-main" aria-label="Chat conversation">
+        <header class="chat-header">
+          <div>
+            <h2 id="chatTitle">Messages</h2>
+            <p id="currentUserLabel">Not connected</p>
+          </div>
+
+          <div class="encryption-status">
+            <span aria-hidden="true">🔐</span>
+            Encrypted demo
+          </div>
+        </header>
+
+        <div
+          id="messageList"
+          class="message-list"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+        >
+          <div id="emptyChat" class="empty-chat">
+            <div class="empty-chat-icon" aria-hidden="true">✉</div>
+            <h3>No messages yet</h3>
+            <p>Join with another user to start chatting.</p>
+          </div>
+        </div>
+
+        <div id="errorMessage" class="error-message hidden" role="alert"></div>
+
+        <form id="messageForm" class="message-form">
+          <label class="sr-only" for="recipient">Send message to</label>
+
+          <select id="recipient" name="recipient" required disabled>
+            <option value="">Select recipient</option>
+          </select>
+
+          <label class="sr-only" for="messageInput">Your message</label>
+
+          <input
+            id="messageInput"
+            name="message"
+            type="text"
+            placeholder="Type an encrypted message..."
+            maxlength="10000"
+            autocomplete="off"
+            required
+            disabled
+          />
+
+          <button id="sendButton" type="submit" disabled>
+            Send
+          </button>
+        </form>
+
+        <p class="chat-footnote">
+          Never share sensitive information in this demonstration.
+        </p>
+      </section>
+    </section>
+
+    <footer class="app-footer">
+      <p>BlockTalk · College Engineering Project · Member 3</p>
+    </footer>
+  </main>
+</body>
+</html>
